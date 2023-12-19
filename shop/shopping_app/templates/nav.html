@@ -1,0 +1,22 @@
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url 'shopping_app:allProdCat' %}">All Categories</a>
+    </li>
+    {% for cat in links %}
+    <li class="nav-item">
+      <a class="nav-link" href="{{cat.get_url}}">{{cat.name}}</a>
+    </li>
+    {% endfor %}
+    {% if item_count > 0%}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'cart:cart_detail' %}"> Your Kart <i class="fa-solid fa-cart-plus fa-shake"></i>[{{item_count}}]</a>
+    </li>
+    {% endif %}
+    <li>
+      <form class="d-flex" action="{% url 'searchapp:SearchResult' %}" method="get">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+    </li>
+</ul>

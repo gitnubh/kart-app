@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription%}
+    {% if category %}
+        {{category.description|truncatewords:150}}
+    {% else %}
+        Welcome to kart shopping store, buy everything you need for affordable cost
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {%if category %}
+        {{category.name}} from kart for unbelievable offers
+    {% else %}
+        Check out our new Collections
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if category %}
+        <div>
+            <div class="text-center explore">
+                <p>
+                    <a href="{% url 'shopping_app:allProdCat' %}" style="text-decoration: none;  color: #00f8f8;"> Explore More <i class="fa-solid fa-magnifying-glass-arrow-right fa-bounce"></i></a>
+                </p>
+            </div>
+        </div>
+    {% endif %}
+    {% if category %}
+        <div class="text-center"> 
+            <img src="{{category.image.url}}" alt="{{category.name}}" width="500px" height="500px">
+        </div>
+        <br>
+        <div class="text-center">
+            <h1 class="display-4" style="font-size: 20px;">{{category.name}}</h1>
+        </div>
+        <div>
+            <p class="lead text-center">{{category.description}}</p>
+        </div>
+    {% else %}
+        <div class="container-fluid">
+            <img src="{% static 'img/banner.png' %}" alt="banner" width="100%">
+        </div>
+        <br>
+        <div>
+            <h1 class="display-4 text-center">Shoppers asylum for the weekend</h1>
+            <p class="lead text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis amet quos eligendi eaque quasi quod deserunt aperiam molestias necessitatibus iure possimus nostrum, voluptates consectetur quas iusto cupiditate optio facilis magnam.</p>
+        </div>
+    {% endif %}
+    <div>
+        <div class="container">
+            <div class="row mx_auto">
+                {% for product in products.object_list %}
+                    <div class="col-9 col-sm-12 col-md-4 col-lg-4 gy-5">
+                        <div class="card text-center" style="min-width:18rem">
+                            <a href="{{product.get_url}}"><img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}" width="500px" height="500px"></a>
+                                <div class="card-body" style="background-color: black; color: #00f8f8;">
+                                    <h4 class="display-6" style="font-size: 20px; text-transform: uppercase; letter-spacing: .2em;">{{product.name}}</h4>
+                                <p class="lead">₹{{product.price}}</p>
+                                </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="mx-auto">
+                {% if products.paginator.num_pages > 1 %}
+                    <hr> 
+                    <div class="text-center">
+                    {% for pg in products.paginator.page_range %}
+                        <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}"> {{pg}} </a>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <br>
+        </div>
+    </div>
+{% endblock %}

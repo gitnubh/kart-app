@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription%}
+    Unique Collections
+{% endblock %}
+{% block title %}
+    Search
+{% endblock %}
+{% block content %}
+    <div class="text-center"> <span class="display-4">Searching for:</span>
+        <small class="display-6 text-white" >{{query}}</small>
+    </div>
+    <div class="container">
+        <div class="row mx_auto">
+            {% for product in products %}
+                <div class="col-9 col-sm-12 col-md-4 col-lg-4 gy-5">
+                    <div class="card text-center" style="min-width:18rem">
+                        <a href="{{product.get_url}}"><img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}" width="500px" height="500px"></a>
+                            <div class="card-body" style="background-color: black; color: #00f8f8;">
+                                <h4 class="display-6" style="font-size: 20px; text-transform: uppercase; letter-spacing: .2em;">{{product.name}}</h4>
+                            <p class="lead">₹{{product.price}}</p>
+                            </div>
+                    </div>
+                </div>
+            {% empty %}
+            <div class="row mx-auto">
+                <p class="text-center display-6 text-white" > No results found </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

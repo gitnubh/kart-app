@@ -1,0 +1,62 @@
+.header_space{    
+    background-color: #000000;
+}
+
+.nav{
+    background-color: #000000;
+}
+
+a.nav-link{
+    color: #00f8f8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: large;
+}
+
+body{
+    background-color: #000000;
+    color: #00f8f8;
+}
+
+a.nav-link:hover{
+    color: white;
+    text-decoration: underline;
+    background-color: #00f8f8;
+    /* border: 5px solid #00f8f8; */
+}
+
+.explore{
+    color: #00f8f8;
+}
+
+.my_footer{
+    padding: 50px;
+    background-color: #000000;
+    color: #00f8f8;
+}
+
+.product_name{
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    padding: 15px;
+}
+
+.cart_thead{
+    font-weight: bolder;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    background-color: transparent;
+}
+
+.cart_link{
+    text-decoration: none;
+}
+
+.cart_icon{
+    text-decoration: none;
+    color: #00f8f8;
+}
+
+.cart_button{
+    margin: 5px;
+}
